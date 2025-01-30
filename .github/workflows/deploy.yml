@@ -8,12 +8,12 @@ env:
   MONGODB_DB_NAME: gha-demo # will be avaialbe in all jobs unless a job overrides this variable
 jobs:
   test:
+    environment: testing # it'll use the secrets that belongs to testing environment for this job
     env: # will be only available for this job - maybe test job needs to connect a test db that needs the following variables
       MONGODB_CLUSTER_ADDRESS: ${{ secrets.MONGODB_CLUSTER_ADDRESS }}
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
-    environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
